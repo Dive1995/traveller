@@ -5,9 +5,24 @@
 
 @layer base {
 :root {
-    --primary-bg-color: #3490dc;
-    --primary-text-color: #ffffff;
-    --primary-hover-bg-color: #2176b4;
+    --primary-bg-color: #eefcef;
+    
+    --primary-color: #13711a; 
+    /* #c1ee91; */
+    --primary-text-color: #000;
+    --primary-hover-color: #b5f2b9;
     --primary-hover-text-color: #cce0ff;
+
+    --secondary-color: #b5f2b9;
+    /* #cff7ce; */
+    --secondary-text-color: #ffffff;
+    --secondary-hover-color: #2176b4;
+    --secondary-hover-text-color: #cce0ff;
+
+    --accent-color: #20bc2a;
+    /* #3ae137; */
+    --accent-text-color: #ffffff;
+    --accent-hover-color: #2176b4;
+    --accent-hover-text-color: #cce0ff;
   }
 }
