@@ -1,8 +1,8 @@
 import React from 'react'
 
-function CardBody({content}) {
+function CardBody({children, className}) {
   return (
-    <div>{content}</div>
+    <div className={className}>{children}</div>
   )
 }
 

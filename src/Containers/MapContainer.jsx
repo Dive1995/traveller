@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useRef } from 'react'
-import { GoogleMap, useLoadScript } from '@react-google-maps/api'
+import { GoogleMap, Marker } from '@react-google-maps/api'
 
-function MapContainer({center, isMapLoaded}) {
+function MapContainer({center}) {
   const mapRef = useRef();
   const options = useMemo(() => ({
     disableDefaultUI: true
@@ -9,9 +9,7 @@ function MapContainer({center, isMapLoaded}) {
   const onLoad = useCallback((map) => (mapRef.current = map), [])
 
   
-
-
-  if(!isMapLoaded) return <div>Loading...</div>
+  
   return (
     <div className="flex h-screen w-full">
       <GoogleMap 
@@ -20,6 +18,7 @@ function MapContainer({center, isMapLoaded}) {
         mapContainerStyle={{width: '100%',height: '100%'}} 
         onLoad={onLoad}
         options={options}>
+          <Marker position={center} />
       </GoogleMap>
     </div>
   )
