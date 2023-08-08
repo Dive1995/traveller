@@ -4,6 +4,8 @@ import TripHeader from "./TripHeader";
 import { useState } from "react";
 import TripMenuContainer from "./TripMenuContainer";
 import TripItineraryContainer from "./TripItineraryContainer";
+import PlaceCard from "./PlaceCard";
+import SearchPlace from "../Components/Place/SearchPlace";
 
 
 function TripContainer({image="sdf", onLoad, onPlaceChanged, places = []}) {
@@ -15,7 +17,6 @@ function TripContainer({image="sdf", onLoad, onPlaceChanged, places = []}) {
         <div className="p-4">
             <TripMenuContainer/>
             <TripItineraryContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} places={places}/>
-            
             {/* <Button icon={<FaSearch />}>Search</Button> */}
             {/* <Button icon={<FaSave/>} className="bg-red-500">Save</Button> */}
         </div>

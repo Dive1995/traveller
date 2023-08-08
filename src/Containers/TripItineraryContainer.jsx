@@ -16,7 +16,7 @@ function TripItineraryContainer({onLoad, onPlaceChanged, places = []}) {
         {/* <div className="bg-blue-100 h-16 rounded w-3/4 whitespace-pre-wrap overflow-y-auto" placeholder="Add something here." contentEditable onInput={(e) => setNotes(e.target.innerText)}>
             <p>{notes}</p>
         </div> */}
-        <TimeLineContainer/>
+        <TimeLineContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} places={places}/>
     </div>
   )
 }
