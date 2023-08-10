@@ -4,38 +4,114 @@ import PlaceCard from './PlaceCard'
 import SearchPlace from '../Components/Place/SearchPlace'
 import Button from '../Components/Button/Button';
 import { FaList, FaStickyNote } from 'react-icons/fa';
+import NewNote from './NewNote';
+import NewToDo from './NewToDo';
+import PlaceTimeLine from './PlaceTimeLine';
+import NoteTimeLine from './NoteTimeLine';
+import TodoTimeLine from './TodoTimeLine';
+
+const itenaries = [ //contains all the days plan
+  {
+    day: 1,
+    date: "2nd, September 2023",
+    totalExpense: 500,
+    itenary: [
+      {
+        id: 234234,
+        type: "place",
+        name: "Berlin Museum",
+        description: "Has some old books",
+        phoneNumber: "075-896876"
+      },
+      {
+        id: 8943,
+        type: "note",
+        title: "Before the trip",
+        content: "Make sure to visit Stugart"
+      },
+      {
+        id: 1863,
+        type: "todo",
+        title: "Things to bring",
+        list: ['shorts', 'shirt', 'passport']
+      },
+      {
+        id: 2344,
+        type: "note",
+        title: "Take care of",
+        content: "Some more notes"
+      },
+      {
+        id: 234,
+        type: "todo",
+        title: "Things not to bring",
+        list: ['laptop', 'money']
+      }
+    ]
+  }
+]
 
 function TimeLineContainer({places = [], onLoad, onPlaceChanged}) {
-  const [timeLine, setTimeLine] = useState();
+  const [timeLine, setTimeLine] = useState({
+    day: 1,
+    date: "2nd, September 2023",
+    totalExpense: 500,
+    itenary: [
+      {
+        id: 234234,
+        type: "place",
+        name: "Berlin Museum",
+        description: "Has some old books",
+        phoneNumber: "075-896876"
+      },
+      {
+        id: 8943,
+        type: "note",
+        title: "Before the trip",
+        content: "Make sure to visit Stugart"
+      },
+      {
+        id: 1863,
+        type: "todo",
+        title: "Things to bring",
+        list: ['shorts', 'shirt', 'passport']
+      },
+      {
+        id: 2344,
+        type: "note",
+        title: "Take care of",
+        content: "Some more notes"
+      },
+      {
+        id: 234,
+        type: "todo",
+        title: "Things not to bring",
+        list: ['laptop', 'money']
+      }
+    ]
+  });
+  const [notes, setNotes] = useState([]);
+
   return (
     <div className="">
-      {places.map(place => <div className='line border-l-4 border-red-200 relative'>
-          <div className='number absolute h-6 w-6 bg-red-300 rounded-full flex items-center justify-center -left-3 top-10'>1</div>
-          <div className='px-5'>
-          <PlaceCard place={place}/>
-            <div className='card bg-slate-200 p-3 rounded-md'>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
-            </div>
-          </div>
-          <div className='p-5'>
-            <div className='card bg-slate-200 p-3 rounded-md'>
-              Lorem Ipsum is simply dummy 
-            </div>
-          </div>
-        </div>)}
+      {timeLine.itenary.map(item => {
+        if(item.type == "place"){
+          return <PlaceTimeLine place={item}/>
+        }else if(item.type == "note"){
+          return <NoteTimeLine/>
+        }else if(item.type == "todo"){
+          return <TodoTimeLine/>
+        }
+        return null;
+      })}
+
+        {/* {notes.map(note => <NewNote note={note}/>)} */}
 
         <div className='flex'>
           <SearchPlace onLoad={onLoad} onPlaceChanged={onPlaceChanged}/>
-          <Button className='bg-blue-200' icon={<FaStickyNote/>} onClick={() => places.push({name: "asdfsdf"})}></Button>
-          <Button className='bg-blue-200' icon={<FaList/>} onClick={() => places.push({name: "qweqweqe"})}></Button>
+          <Button className='bg-blue-200' icon={<FaStickyNote/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1212, type: "note"}]})}></Button>
+          <Button className='bg-blue-200' icon={<FaList/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1414, type: "todo"}]})}></Button>
         </div>
-        
-        
-
-        {/* <div className="relative w-full h-56 flex items-center">
-            <div className="h-full w-1 bg-indigo-300"></div>
-            <div className="absolute w-6 h-6 rounded-full bg-indigo-400 z-10 text-white text-center">1</div>
-        </div> */}
     </div>
   )
 }
