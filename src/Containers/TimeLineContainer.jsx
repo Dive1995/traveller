@@ -98,7 +98,7 @@ function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day}) {
   },[itenary])
 
   return (
-    <div className="mx-9 my-4 overflow-y-scroll">
+    <div className="my-4 overflow-y-scroll">
       {timeLine.map(item => {
         if(item.type == "place"){
           return <PlaceTimeLine place={item}/>
@@ -112,7 +112,7 @@ function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day}) {
 
         {/* {notes.map(note => <NewNote note={note}/>)} */}
 
-        <div className='flex'>
+        <div className='flex gap-2'>
           <SearchPlace onLoad={onLoad} onPlaceChanged={onPlaceChanged} day={day}/>
           <Button className='bg-blue-200' icon={<FaStickyNote/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1212, type: "note"}]})}></Button>
           <Button className='bg-blue-200' icon={<FaList/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1414, type: "todo"}]})}></Button>

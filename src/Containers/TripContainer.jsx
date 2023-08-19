@@ -6,6 +6,7 @@ import TripMenuContainer from "./TripMenuContainer";
 import TripItineraryContainer from "./TripItineraryContainer";
 import PlaceCard from "./PlaceCard";
 import SearchPlace from "../Components/Place/SearchPlace";
+import TripDays from "./TripDays";
 
 
 function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = []}) {
@@ -27,6 +28,8 @@ function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = []}) {
         <TripHeader image="s"/>
         <div className="p-4">
             <TripMenuContainer/>
+
+            <TripDays trip={trip}/>
 
             <TripItineraryContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={filteredTrip[0]} day={day}/>
             {/* <Button icon={<FaSearch />}>Search</Button> */}

@@ -9,11 +9,11 @@ function SearchPlace({day, onLoad, onPlaceChanged}) {
   }
 
   return (
-    <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChangedFn}>
+    <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChangedFn} className='border-red-500 flex-grow'>
         <div>
             <input 
               type="text" 
-              className='p-2 border-2 rounded' 
+              className='p-2 border-2 rounded-full w-full' 
               placeholder="Search a place..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
