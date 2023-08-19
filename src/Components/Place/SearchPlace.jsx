@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Autocomplete } from "@react-google-maps/api";
 
-function SearchPlace({onLoad, onPlaceChanged}) {
+function SearchPlace({day, onLoad, onPlaceChanged}) {
   const [input, setInput] = useState('');
   const onPlaceChangedFn = () => {
-    onPlaceChanged();
+    onPlaceChanged(day);
     setInput('');
   }
 

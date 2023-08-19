@@ -1,14 +1,25 @@
 import { FaSearch, FaSave, FaPencilAlt, FaLocationArrow, FaCalendar } from "react-icons/fa";
 import NavBar from "./NavBar";
 import TripHeader from "./TripHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TripMenuContainer from "./TripMenuContainer";
 import TripItineraryContainer from "./TripItineraryContainer";
 import PlaceCard from "./PlaceCard";
 import SearchPlace from "../Components/Place/SearchPlace";
 
 
-function TripContainer({image="sdf", onLoad, onPlaceChanged, places = []}) {
+function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = []}) {
+  const [day, setDay] = useState(1);
+  const [filteredTrip, setFilteredTrip] = useState([]);
+
+  useEffect(() => {
+    const filterTripByDay = () => {
+      const dayTrip = trip.filter(trip => trip.day === day);
+      setFilteredTrip(dayTrip);
+    }
+
+    filterTripByDay();
+  }, [day, trip])
   
   return (
     <div className="h-screen">
@@ -16,7 +27,8 @@ function TripContainer({image="sdf", onLoad, onPlaceChanged, places = []}) {
         <TripHeader image="s"/>
         <div className="p-4">
             <TripMenuContainer/>
-            <TripItineraryContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} places={places}/>
+
+            <TripItineraryContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={filteredTrip[0]} day={day}/>
             {/* <Button icon={<FaSearch />}>Search</Button> */}
             {/* <Button icon={<FaSave/>} className="bg-red-500">Save</Button> */}
         </div>
