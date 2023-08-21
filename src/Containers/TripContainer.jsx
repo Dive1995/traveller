@@ -9,7 +9,7 @@ import SearchPlace from "../Components/Place/SearchPlace";
 import TripDays from "./TripDays";
 
 
-function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = []}) {
+function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = [], addTodoToItenary}) {
   const [day, setDay] = useState(1);
   const [filteredTrip, setFilteredTrip] = useState([]);
 
@@ -31,7 +31,7 @@ function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = []}) {
 
             <TripDays trip={trip}/>
 
-            <TripItineraryContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={filteredTrip[0]} day={day}/>
+            <TripItineraryContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={filteredTrip[0]} day={day} addTodoToItenary={addTodoToItenary}/>
             {/* <Button icon={<FaSearch />}>Search</Button> */}
             {/* <Button icon={<FaSave/>} className="bg-red-500">Save</Button> */}
         </div>

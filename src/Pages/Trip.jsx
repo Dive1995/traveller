@@ -48,8 +48,8 @@ function Trip() {
       setCordinates({lat, lng});
       console.log("onPlaceCHanged should be called seconds")
 
-      const map = mapRef.current;
-      map.panTo({lat, lng});
+      // const map = mapRef.current;
+      // map.panTo({lat, lng});
       
       let photoUrl;
       if (place.photos && place.photos.length > 0) {
@@ -79,35 +79,37 @@ function Trip() {
           return trip
         }
       })
-      // const selectedDayTrip = trip.filter(trip => trip.day === day);
-      // selectedDayTrip.itenary.push({
-      //   type: "place",
-      //   id: place.place_id, 
-      //   name: place.name, 
-      //   address: place.formatted_address, 
-      //   website: place.website, 
-      //   photoUrl: photoUrl,
-      //   rating: place.rating,
-      //   user_ratings_total: place.user_ratings_total,
-      //   phoneNumber: place.international_phone_number,
-      //   website: place.website
-      // });
 
       setTrip(updatedTrip);
-
-      // setTrip([...trip, {
-      //     id: place.place_id, 
-      //     name: place.name, 
-      //     address: place.formatted_address, 
-      //     website: place.website, 
-      //     photoUrl: photoUrl,
-      //     rating: place.rating,
-      //     user_ratings_total: place.user_ratings_total,
-      //     phoneNumber: place.international_phone_number,
-      //     website: place.website
-      //   }]);
     }
+  }
 
+  const addTodoToItenary = (day) => {
+    const updatedTrip = trip.map(currentTrip => {
+      if(currentTrip.day === day){
+        return {...currentTrip, itenary: [...currentTrip.itenary, {type: 'todo', title: 'New todo test', list: [{content:'boook', checked:true},{content:'angular', checked:false}]}]}
+      }else{
+        return currentTrip;
+      }
+    });
+
+    setTrip(updatedTrip);
+  }
+  
+  const editTodoToItenary = (day, todo) => {
+    
+  }
+
+  const addNoteToItenary = (day) => {
+    const updatedTrip = trip.map(currentTrip => {
+      if(currentTrip.day === day){
+        return {...currentTrip, itenary: [...currentTrip.itenary, {type: 'note', title: '', description: ''}]}
+      }else{
+        return currentTrip;
+      }
+    });
+
+    setTrip(updatedTrip);
   }
 
   const {isLoaded} = useLoadScript({
@@ -119,7 +121,7 @@ function Trip() {
   return (
     <div className="main-page grid grid-cols-2">
         <MapContainer center={cordinates} places={trip[0].itenary.filter(itenary => itenary.type === "place")}/>
-        <TripContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={trip}/>
+        <TripContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={trip} addTodoToItenary={addTodoToItenary}/>
       </div>
   )
 }

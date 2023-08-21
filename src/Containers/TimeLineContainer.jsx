@@ -51,7 +51,7 @@ const itenaries = [ //contains all the days plan
   }
 ]
 
-function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day}) {
+function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day, addTodoToItenary}) {
   const [timeLine, setTimeLine] = useState(itenary);
   // const [timeLine, setTimeLine] = useState({
   //   day: 1,
@@ -105,7 +105,7 @@ function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day}) {
         }else if(item.type == "note"){
           return <NoteTimeLine/>
         }else if(item.type == "todo"){
-          return <TodoTimeLine/>
+          return <TodoTimeLine todo={item}/>
         }
         return null;
       })}
@@ -115,7 +115,7 @@ function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day}) {
         <div className='flex gap-2'>
           <SearchPlace onLoad={onLoad} onPlaceChanged={onPlaceChanged} day={day}/>
           <Button className='bg-blue-200' icon={<FaStickyNote/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1212, type: "note"}]})}></Button>
-          <Button className='bg-blue-200' icon={<FaList/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1414, type: "todo"}]})}></Button>
+          <Button className='bg-blue-200' icon={<FaList/>} onClick={() => addTodoToItenary(day)}></Button>
         </div>
     </div>
   )

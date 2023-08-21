@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaCheckSquare, FaRegSquare, FaSquare } from 'react-icons/fa'
 
-function NewToDo() {
+function NewToDo({todo}) {
 const [todos, setTodos] = useState([
     {id: 1, content: "Get prepared", checked: false},
     {id: 2, content: "Be ready before 6", checked: true},
@@ -33,8 +33,8 @@ const handleKeyEvent = (e) => {
   return (
     <div>
         <div contentEditable onKeyDown={(e) => handleKeyEvent(e)}>
-            <p contentEditable data-placeholder='Title'>Title</p>
-            {todos.map((todo) => <p className='flex items-center gap-1'>
+            <p contentEditable data-placeholder='Title'>{todo.title}</p>
+            {todo.list.map((todo) => <p className='flex items-center gap-1'>
                 <span className='cursor-pointer' onClick={() => toggleChecked(todo)}>{todo.checked ? <FaCheckSquare/> : <FaRegSquare/>}</span>
                 {todo.content}
             </p>)}
