@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
-import PlaceCard from './PlaceCard'
-import SearchPlace from '../Components/Place/SearchPlace'
-import TimeLineContainer from './TimeLineContainer';
+import TimeLineContainer from '../TimeLineContainer';
 
-function TripItineraryContainer({onLoad, onPlaceChanged, trip = [], day, addTodoToItenary}) {
+function TripItinerary({onLoad, onPlaceChanged, trip = [], day, addTodoToItenary}) {
     const [notes, setNotes] = useState('');
   return (
     <div className='mx-6'>
@@ -14,4 +12,4 @@ function TripItineraryContainer({onLoad, onPlaceChanged, trip = [], day, addTodo
   )
 }
 
-export default TripItineraryContainer
+export default TripItinerary

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TripOverviewContainer() {
+function TripOverview() {
   return (
     <div>
         <p>Visiting # places in # days</p>
@@ -12,4 +12,4 @@ function TripOverviewContainer() {
   )
 }
 
-export default TripOverviewContainer
+export default TripOverview

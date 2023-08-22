@@ -1,7 +1,7 @@
-import React from 'react'
-import TripOverviewContainer from './TripOverviewContainer'
+import TripOverview from "./TripOverview"
 
-function TripMenuContainer() {
+
+function TripMenu() {
   return (
     <>
         <ul className='list-none flex gap-5 justify-center items-center'>
@@ -10,9 +10,9 @@ function TripMenuContainer() {
             <li><a href="">Expenses</a></li>
         </ul>    
 
-        {/* <TripOverviewContainer/> */}
+        {/* <TripOverview/> */}
     </>
   )
 }
 
-export default TripMenuContainer
+export default TripMenu

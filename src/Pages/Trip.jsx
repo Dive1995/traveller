@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import MapContainer from "../Containers/MapContainer"
 import NavBar from "../Containers/NavBar"
-import TripContainer from "../Containers/TripContainer"
+import TripContainer from "../Containers/Trip/TripContainer"
 import { useLoadScript } from '@react-google-maps/api'
 
 function Trip() {
@@ -46,7 +46,6 @@ function Trip() {
       const lat = place.geometry?.location?.lat();
       const lng = place.geometry?.location?.lng();
       setCordinates({lat, lng});
-      console.log("onPlaceCHanged should be called seconds")
 
       // const map = mapRef.current;
       // map.panTo({lat, lng});
@@ -54,13 +53,11 @@ function Trip() {
       let photoUrl;
       if (place.photos && place.photos.length > 0) {
         photoUrl = place.photos[0].getUrl();
-        console.log("Photo url: ", photoUrl);
       }
 
       //TODO: should add place to the end of correspoding day's itinerary
       const updatedTrip = trip.map(trip => {
         if(trip.day === day){
-          console.log("Add for day ",trip.day)
           return {...trip, itenary: [...trip.itenary, {
             type: "place",
             id: place.place_id, 
@@ -75,7 +72,6 @@ function Trip() {
             cordinates: {lat, lng}
           }]}
         }else{
-          console.log("Not the day we are planning");
           return trip
         }
       })

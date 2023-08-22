@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import berlin from '../berlin.jpg'
-import PlaceCard from './PlaceCard'
 import SearchPlace from '../Components/Place/SearchPlace'
 import Button from '../Components/Button/Button';
 import { FaList, FaStickyNote } from 'react-icons/fa';
@@ -98,7 +97,7 @@ function TimeLineContainer({itenary = [], onLoad, onPlaceChanged, day, addTodoTo
   },[itenary])
 
   return (
-    <div className="my-4 overflow-y-scroll">
+    <div className="my-4">
       {timeLine.map(item => {
         if(item.type == "place"){
           return <PlaceTimeLine place={item}/>
