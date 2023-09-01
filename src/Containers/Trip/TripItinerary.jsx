@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import PlaceTimeLine from './../PlaceTimeLine';
 import NoteTimeLine from './../NoteTimeLine';
 import TodoTimeLine from './../TodoTimeLine';
@@ -7,9 +7,15 @@ import SearchPlace from './../../Components/Place/SearchPlace'
 import { FaList, FaStickyNote } from 'react-icons/fa';
 
 
-function TripItinerary({onLoad, onPlaceChanged, trip = [], day, addTodoToItenary}) {
+function TripItinerary({trip = [], day, addTodoToItenary}) {
     const [notes, setNotes] = useState('');
     const [timeLine, setTimeLine] = useState(trip.itenary || []);
+
+  useEffect(() => {
+    console.log("trip ", trip);
+    // setTimeLine(trip.itenary || []);
+  }, [trip])
+
   return (
     <div className='mx-6'>
         <p className="mb-2 text-lg">{trip?.date}</p>
@@ -29,7 +35,7 @@ function TripItinerary({onLoad, onPlaceChanged, trip = [], day, addTodoToItenary
         {/* {notes.map(note => <NewNote note={note}/>)} */}
 
         <div className='flex gap-2'>
-          <SearchPlace onLoad={onLoad} onPlaceChanged={onPlaceChanged} day={day}/>
+          <SearchPlace day={day}/>
           <Button className='bg-blue-200' icon={<FaStickyNote/>} onClick={() => setTimeLine({...timeLine, itenary: [...timeLine.itenary, {id:1212, type: "note"}]})}></Button>
           <Button className='bg-blue-200' icon={<FaList/>} onClick={() => addTodoToItenary(day)}></Button>
         </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
 import { useSelector } from 'react-redux';
 
@@ -10,12 +10,14 @@ function MapContainer({center}) {
   
   const onLoad = useCallback((map) => (mapRef.current = map), [])
 
-  const places = useSelector(state => state.trips.value.filter(trip => {
+  const places = useSelector(state => state.trips.trips.filter(trip => {
     const tripWithPlace = trip.itenary.map(itenary => itenary.length > 0 && itenary.type === 'place');
     if(tripWithPlace.length > 0)
       return tripWithPlace.itenary
     return null;
   }));
+
+  const cordinates = useSelector(state => state.map.cordinates);
 
   // const markerPosition = getPixelPosition(center.lat, center.lng, mapRef?.current);
   const getPixelPositionOffset = (offsetWidth, offsetHeight, labelAnchor) => {
@@ -29,7 +31,7 @@ function MapContainer({center}) {
     <div className="flex h-screen w-full">
       <GoogleMap 
         zoom={12} 
-        center={center} 
+        center={cordinates} 
         mapContainerStyle={{width: '100%',height: '100%'}} 
         onLoad={onLoad}
         options={options}>
