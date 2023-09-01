@@ -4,20 +4,22 @@ import { useEffect, useState } from "react";
 import TripDays from "./TripDays";
 import TripMenu from "./TripMenu";
 import TripItinerary from "./TripItinerary";
+import { useSelector } from "react-redux";
 
 
-function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = [], addTodoToItenary}) {
-  const [day, setDay] = useState(1);
+function TripContainer({onLoad, onPlaceChanged, addTodoToItenary}) {
+  const [day, setDay] = useState(1); //TODO: add this inside the redux store - it is being used in multiple places
   const [filteredTrip, setFilteredTrip] = useState([]);
+  const trips = useSelector(state => state.trips.value);
 
-  useEffect(() => {
-    const filterTripByDay = () => {
-      const dayTrip = trip.filter(trip => trip.day === day);
-      setFilteredTrip(dayTrip);
-    }
-
+  useEffect(() => {    
     filterTripByDay();
-  }, [day, trip])
+  }, [day])
+
+  const filterTripByDay = () => {
+    const dayTrip = trips.filter(trip => trip.day === day);
+    setFilteredTrip(dayTrip);
+  }
   
   return (
     <div className="h-screen">
@@ -26,7 +28,7 @@ function TripContainer({image="sdf", onLoad, onPlaceChanged, trip = [], addTodoT
         <div className="p-4">
             <TripMenu/>
 
-            <TripDays trip={trip}/>
+            <TripDays trips={trips}/>
 
             <TripItinerary onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={filteredTrip[0]} day={day} addTodoToItenary={addTodoToItenary}/>
             {/* <Button icon={<FaSearch />}>Search</Button> */}

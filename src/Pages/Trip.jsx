@@ -3,6 +3,7 @@ import MapContainer from "../Containers/MapContainer"
 import NavBar from "../Containers/NavBar"
 import TripContainer from "../Containers/Trip/TripContainer"
 import { useLoadScript } from '@react-google-maps/api'
+import { useSelector } from "react-redux"
 
 function Trip() {
   const [cordinates, setCordinates] = useState({lat:43, lng: -80});
@@ -10,26 +11,7 @@ function Trip() {
   const autoCompleteRef = useRef();
   const mapRef = useRef(null);
   // const [places, setPlaces] = useState([]); //TODO: places will have date, so that we can have multiple day trips
-  const [trip, setTrip] = useState([
-    {
-      day: 1,
-      date: "2nd, September 2023",
-      totalExpense: 500,
-      itenary: []
-    },
-      {
-      day: 2,
-      date: "3rd, September 2023",
-      totalExpense: 1200,
-      itenary: []
-    },
-      {
-      day: 3,
-      date: "4th, September 2023",
-      totalExpense: 800,
-      itenary: []
-    }
-  ]);
+  const trips = useSelector(state => state.trips.value);
 
   const onLoad = (ref) => {
     autoCompleteRef.current = ref;
@@ -56,7 +38,7 @@ function Trip() {
       }
 
       //TODO: should add place to the end of correspoding day's itinerary
-      const updatedTrip = trip.map(trip => {
+      const updatedTrip = trips.map(trip => {
         if(trip.day === day){
           return {...trip, itenary: [...trip.itenary, {
             type: "place",
@@ -76,36 +58,8 @@ function Trip() {
         }
       })
 
-      setTrip(updatedTrip);
+      // setTrip(updatedTrip);
     }
-  }
-
-  const addTodoToItenary = (day) => {
-    const updatedTrip = trip.map(currentTrip => {
-      if(currentTrip.day === day){
-        return {...currentTrip, itenary: [...currentTrip.itenary, {type: 'todo', title: 'New todo test', list: [{content:'boook', checked:true},{content:'angular', checked:false}]}]}
-      }else{
-        return currentTrip;
-      }
-    });
-
-    setTrip(updatedTrip);
-  }
-  
-  const editTodoToItenary = (day, todo) => {
-    
-  }
-
-  const addNoteToItenary = (day) => {
-    const updatedTrip = trip.map(currentTrip => {
-      if(currentTrip.day === day){
-        return {...currentTrip, itenary: [...currentTrip.itenary, {type: 'note', title: '', description: ''}]}
-      }else{
-        return currentTrip;
-      }
-    });
-
-    setTrip(updatedTrip);
   }
 
   const {isLoaded} = useLoadScript({
@@ -116,8 +70,8 @@ function Trip() {
   if(!isLoaded) return <div>Loading...</div>
   return (
     <div className="main-page grid grid-cols-2">
-        <MapContainer center={cordinates} places={trip[0].itenary.filter(itenary => itenary.type === "place")}/>
-        <TripContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged} trip={trip} addTodoToItenary={addTodoToItenary}/>
+        <MapContainer center={cordinates}/>
+        <TripContainer onLoad={onLoad} onPlaceChanged={onPlaceChanged}/>
       </div>
   )
 }
