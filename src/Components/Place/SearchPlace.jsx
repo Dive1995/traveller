@@ -12,11 +12,9 @@ function SearchPlace({day}) {
 
   const onLoad = (ref) => {
     autoCompleteRef.current = ref;
-    console.log("onLoad should be called first")
   };
 
   const onPlaceChanged = () => {
-    console.log(autoCompleteRef.current.getPlace());
     const place = autoCompleteRef.current.getPlace();
     
     if(place){
@@ -45,7 +43,6 @@ function SearchPlace({day}) {
         cordinates: {lat, lng}
       }
 
-      console.log("place : ", placeToAdd);
       dispatch(setCordinates({lat, lng}))
       dispatch(addPlace(placeToAdd))
       setInput('');

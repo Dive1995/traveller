@@ -6,7 +6,7 @@ import CardCover from '../Components/Card/CardCover'
 function PlaceCard({place}) {
   const [viewMore, setViewMore] = useState(false);
   return (
-    <div key={place.id} className="grid grid-cols-4 mb-3">
+    <div key={place.id} className="grid grid-cols-4">
         <CardCover imageUrl={place.photoUrl}/>
         <div className="col-span-3">
           <CardHeader title={place.name} description="Nice place to get some coffee."/>

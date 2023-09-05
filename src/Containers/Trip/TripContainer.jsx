@@ -7,13 +7,12 @@ import TripItinerary from "./TripItinerary";
 import { useSelector } from "react-redux";
 
 
-function TripContainer({addTodoToItenary}) {
+function TripContainer() {
   const [filteredTrip, setFilteredTrip] = useState([]);
   const trips = useSelector(state => state.trips.trips);
   const day = useSelector(state => state.trips.selectedDay);
 
   useEffect(() => {    
-    console.log(trips)
     filterTripByDay();
   }, [day, trips])
 
@@ -31,7 +30,7 @@ function TripContainer({addTodoToItenary}) {
 
             <TripDays trips={trips}/>
 
-            <TripItinerary trip={filteredTrip[0]} day={day} addTodoToItenary={addTodoToItenary}/>
+            <TripItinerary trip={filteredTrip[0]} day={day}/>
             {/* <Button icon={<FaSearch />}>Search</Button> */}
             {/* <Button icon={<FaSave/>} className="bg-red-500">Save</Button> */}
         </div>
