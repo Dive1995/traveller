@@ -1,15 +1,12 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
-import PlaceTimeLine from './../PlaceTimeLine';
-import NoteTimeLine from './../NoteTimeLine';
-import TodoTimeLine from './../TodoTimeLine';
 
 function DragAndDropItem({item, index, dragItemStyle, children}) {
   return (
     <Draggable
         key={item.id}
         index={index}
-        draggableId={item.id.toString()}
+        draggableId={item.id}
     >
         {(provided, snapshot) => (
             <div ref={provided.innerRef}

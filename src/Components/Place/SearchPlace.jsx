@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react'
 import { Autocomplete } from "@react-google-maps/api";
 import { useDispatch } from 'react-redux';
 import { setCordinates } from '../../features/map/map-slice';
-import { addPlace } from '../../features/trip/trip-slice';
+import { addNewPlaceToTimeLine, addIdToItenary } from '../../features/trip/trip-slice';
 
-function SearchPlace({day}) {
+function SearchPlace({itenary, day}) {
   const [input, setInput] = useState('');
   const autoCompleteRef = useRef();
 
@@ -15,6 +15,8 @@ function SearchPlace({day}) {
   };
 
   const onPlaceChanged = () => {
+    //FIXME: when a place without cordinates is selected it shouldn't be added to the trip ?
+    //TODO: break into smaller relevant functions
     const place = autoCompleteRef.current.getPlace();
     
     if(place){
@@ -29,9 +31,14 @@ function SearchPlace({day}) {
         photoUrl = place.photos[0].getUrl();
       }
 
+      console.log(itenary);
+      const placesInItenary = itenary?.filter(item => item.type === 'place');
+
       const placeToAdd = {
         type: "place",
-        id: place.place_id, 
+        day: day,
+        id: place.place_id,
+        order: placesInItenary?.length + 1,
         name: place.name, 
         address: place.formatted_address, 
         website: place.website, 
@@ -39,12 +46,12 @@ function SearchPlace({day}) {
         rating: place.rating,
         user_ratings_total: place.user_ratings_total,
         phoneNumber: place.international_phone_number,
-        website: place.website,
         cordinates: {lat, lng}
       }
 
-      dispatch(setCordinates({lat, lng}))
-      dispatch(addPlace(placeToAdd))
+      dispatch(setCordinates({lat, lng}));
+      dispatch(addNewPlaceToTimeLine(placeToAdd));
+      dispatch(addIdToItenary({data:{id:placeToAdd.id, type:placeToAdd.type}, day}));
       setInput('');
     }
   }

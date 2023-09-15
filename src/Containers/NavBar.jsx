@@ -4,7 +4,7 @@ import Button from '../Components/Button/Button'
 
 function NavBar() {
   return (
-    <div className='bg-blue-100 px-3 py-2 flex items-center justify-between'>
+    <div className='bg-blue-100 px-3 py-2 h-16 flex items-center justify-between sticky top-0 z-50'>
         <h2 className='text-xl'>TravelPlan</h2>
         <ul className='flex space-x-2 items-center'>
             <Button icon={<FaShare/>}>Share</Button>

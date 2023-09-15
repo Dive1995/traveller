@@ -1,4 +1,3 @@
-import { useState, useEffect, useRef } from "react"
 import MapContainer from "../Containers/MapContainer"
 import TripContainer from "../Containers/Trip/TripContainer"
 import { useLoadScript } from '@react-google-maps/api'

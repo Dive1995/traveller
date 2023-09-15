@@ -4,37 +4,29 @@ const initialState = {
     trips: [
         {
             day: 1,
+            color: '#20a4f3',
             date: "2nd, September 2023",
             totalExpense: 500,
-            itenary: [
-              // {
-              //   type: 'place',
-              //   cordinates: {lat:40, lng: 80}
-              // },
-              // {
-              //   type: 'place',
-              //   cordinates: {lat:20, lng: 80}
-              // }
-            ]
+            itenary: []
           },
             {
             day: 2,
+            color: '#ff686b',
             date: "3rd, September 2023",
             totalExpense: 1200,
-            itenary: [
-              // {
-              //   type: 'place',
-              //   cordinates: {lat:140, lng: 180}
-              // }
-            ]
+            itenary: []
           },
             {
             day: 3,
+            color: '#ff8c42',
             date: "4th, September 2023",
             totalExpense: 800,
             itenary: []
           }
     ],
+    places:[],
+    todos:[],
+    notes:[],
     selectedDay: 1
 } 
 
@@ -45,33 +37,33 @@ const tripSlice = createSlice({
     initialState,
     reducers:{
         // add the searched places to the current day
-        addPlace(state, action){
-            state.trips.map(trip => {
-              if(trip.day === state.selectedDay){
-                trip.itenary.push(action.payload);
-              }
-              return trip;
-            });
+        addNewPlaceToTimeLine(state, action){
+          state.places.push(action.payload);
         },
-        //TODO: remove note and todo methods since the data is coming from the payload that matters
-        newNote(state, action){
+        addNewTodoToTimeLine(state, action){
+          state.todos.push(action.payload);
+        },
+        addNewNoteToTimeLine(state, action){
+          state.notes.push(action.payload);
+        },
+        addIdToItenary(state, action){
           state.trips.map(trip => {
-            if(trip.day === state.selectedDay){
-              trip.itenary.push(action.payload);
+            if(trip.day === action.payload.day){
+              trip.itenary.push(action.payload.data);
             }
             return trip;
           });
         },
-        newTodo(state, action){
+        updateDayTimeLine(state, action){
           state.trips.map(trip => {
             if(trip.day === state.selectedDay){
-              trip.itenary.push(action.payload);
+              trip.itenary = action.payload;
             }
             return trip;
-          });
+          })
         }
     }
 })
 
-export const { addPlace, newTodo, newNote } = tripSlice.actions;
+export const { addNewPlaceToTimeLine, addNewTodoToTimeLine, addNewNoteToTimeLine, addIdToItenary, updateDayTimeLine } = tripSlice.actions;
 export default tripSlice.reducer;
