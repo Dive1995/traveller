@@ -48,14 +48,13 @@ function TripContainer() {
         <NavBar />
         <TripHeader image="s"/>
         <div className="p-4">
-            <div className="bg-white sticky top-16 z-50 py-1">
+            <div className="">
+            {/* bg-white sticky top-16 z-50 py-1 */}
               <TripMenu/>
               <TripDays trips={trips}/>
             </div>
 
             <TripItinerary trips={trips}/>
-            {/* <Button icon={<FaSearch />}>Search</Button> */}
-            {/* <Button icon={<FaSave/>} className="bg-red-500">Save</Button> */}
         </div>
     </div>
   );

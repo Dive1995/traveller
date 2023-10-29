@@ -12,8 +12,8 @@ function Trip() {
   if(!isLoaded) return <div>Loading...</div>
   return (
     <div className="main-page grid grid-cols-2">
-        <MapContainer/>
         <TripContainer/>
+        <MapContainer/>
       </div>
   )
 }

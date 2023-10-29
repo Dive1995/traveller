@@ -9,6 +9,7 @@ function TripHeader({image}) {
                 <p className="text-white flex items-center gap-2"><FaCalendar size={20}/>23/7 - 29/7</p>
             </div>
         </div> : 
+      //TODO: Make the Trip name and date stick when scrolled down
         <div className="p-4 flex justify-between items-center my-4">
             <h1 className="text-3xl flex items-center gap-2"><FaLocationArrow size={25}/> Trip to London</h1>
             <p className="flex items-center gap-2"><FaCalendar size={20}/>23/7 - 29/7</p>

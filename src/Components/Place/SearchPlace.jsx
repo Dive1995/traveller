@@ -3,6 +3,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import { useDispatch } from 'react-redux';
 import { setCordinates } from '../../features/map/map-slice';
 import { addNewPlaceToTimeLine, addIdToItenary } from '../../features/trip/trip-slice';
+import './SearchPlaceStyle.css'
 
 function SearchPlace({itenary, day}) {
   const [input, setInput] = useState('');

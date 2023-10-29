@@ -7,22 +7,42 @@ const initialState = {
             color: '#20a4f3',
             date: "2nd, September 2023",
             totalExpense: 500,
-            itenary: []
+            itenary: [
+                {
+                  id: 234,
+                  type: 'place',
+                  cordinates: {lat:40, lng: 80},
+                  name: "Nallur",
+                phoneNumber: "234"
+                },
+                {id: 234,
+                  type: 'place',
+                  cordinates: {lat:20, lng: 80},
+                  name: "Nallur",
+                phoneNumber: "234"
+                },
+              {id: 234,
+                type:'place',
+                cordinates: {lat:20, lng: 80},
+                name: "Nallur",
+                phoneNumber: "234"
+              }
+            ]
           },
-            {
-            day: 2,
-            color: '#ff686b',
-            date: "3rd, September 2023",
-            totalExpense: 1200,
-            itenary: []
-          },
-            {
-            day: 3,
-            color: '#ff8c42',
-            date: "4th, September 2023",
-            totalExpense: 800,
-            itenary: []
-          }
+          //   {
+          //   day: 2,
+          //   color: '#ff686b',
+          //   date: "3rd, September 2023",
+          //   totalExpense: 1200,
+          //   itenary: []
+          // },
+          //   {
+          //   day: 3,
+          //   color: '#ff8c42',
+          //   date: "4th, September 2023",
+          //   totalExpense: 800,
+          //   itenary: []
+          // }
     ],
     places:[],
     todos:[],

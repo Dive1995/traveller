@@ -1,0 +1,9 @@
+/* hide google logo in result */
+.pac-logo:after {
+    display: none !important;
+}
+
+/* .pac-container {
+    top: auto !important;
+    bottom: 100% !important;
+  } */

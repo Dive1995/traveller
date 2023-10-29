@@ -33,9 +33,9 @@ function MapContainer({center}) {
         mapContainerStyle={{width: '100%',height: '100%'}} 
         onLoad={onLoad}
         options={options}>
-    {/* {places?.map(place => <Marker position={{lat:43, lng: -80}} icon={{ url: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png", scaledSize: new window.google.maps.Size(30, 30) }} />)} */}
+    {/* {places?.map(place => <Marker position={place.cordinates} label={place.order.toString()} icon={{ url: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png", scaledSize: new window.google.maps.Size(30, 30) }} />)} */}
           
-    {places.map((place, index) => <OverlayView position={place.cordinates} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+    {places.map((place) => <OverlayView position={place.cordinates} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
        getPixelPositionOffset={(x, y) => getPixelPositionOffset(x, y, { x: 0, y: 0 })}
       >
         <div 
